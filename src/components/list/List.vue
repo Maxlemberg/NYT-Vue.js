@@ -5,7 +5,7 @@
 :titleName="title" 
 :adx='adx_keywords' 
 :descr="abstract" 
-:imgSrc='media[0].mediametadata[2].url'/>
+:imgSrc='media[0]["media-metadata"][2].url'/>
     </div>
     </Container>
 </template>

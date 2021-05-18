@@ -1,5 +1,5 @@
 <template>
-    <button v-on="$listeners" v-bind:type="type" :class="{btn: true, 'btn-reverse': false}">
+    <button v-on="$listeners" v-bind:type="type" :class="{btn: false, 'btn-reverse': true}">
 <slot></slot>
     </button>
 </template>
@@ -36,23 +36,25 @@
   box-shadow: 0  0 5px 5px thistle;
 }
 .btn-reverse {
-     width: 160px;
+  width: 160px;
   height: 40px;
+  /* font-weight: bold; */
+  font-size: 20px;
   border: none;
   cursor: pointer;
-  font-size: 18px;
   padding: 8px 15px;
   margin: 0 10px;
   transition: box-shadow 250ms linear, background-color 250ms linear;
-background-color: teal;
-color: white;
+  background: none;
+  color: teal;
+  border: 2px solid teal;
+  margin-bottom: 30px;
 }
 .btn-reverse:hover {
-  color: teal;
+  background-color: teal;
+  color: white;
   outline: none;
-  background: none;
   box-shadow: 0  0 5px 5px thistle;
-  border: 1px solid teal;
 }
 
 </style>

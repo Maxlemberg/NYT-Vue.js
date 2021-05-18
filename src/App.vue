@@ -1,39 +1,51 @@
 <template>
   <div id="app">
-   <List :items="file"/>
+<Header />
+   <List :items="file" />
    <Button>Load more</Button>
   </div>
+  
 </template>
 
 <script>
-import file from './components/list/files'
 import List from './components/list/List'
 import Button from './components/Button.vue'
+import Header from './components/Header'
+import {getPopularNews} from './services/newsPaper.service'
 
 
 export default {
   name: 'App',
   components: {
   List,
-  Button
+  Button,
+  Header
   },
  
    data() {
      return {
-       file,
+       file: [],
 }
-   }
+   },
+     async created() {
+      try {
+          const {data} = await getPopularNews();
+          this.file = data.results;
+      } catch (error) {
+          console.log(error)
+      }
+   },
+   
 }
 </script>
 
 <style>
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+
 </style>
