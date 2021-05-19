@@ -1,11 +1,14 @@
 <template>
 <Container>
     <div>
-<Item class="list" v-for="{id, title, adx_keywords, abstract, media } in items" :key="id" 
-:titleName="title" 
+<Item class="list" v-for="{id, title, adx_keywords, abstract, media, titleColor} in items" :key="id" 
+:titleName="title"
+:titleColor="titleColor"
 :adx='adx_keywords' 
 :descr="abstract" 
-:imgSrc='media[0]["media-metadata"][2].url'/>
+:imgSrc='media'
+
+/>
     </div>
     </Container>
 </template>
