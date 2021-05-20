@@ -1,10 +1,10 @@
 <template>
-    <article class="item" @click="log">
+    <article class="item" >
 <img :src="imgSrc" class="img" alt="title images">
-    <div>
-        <h2 :style="{color: '#' + titleColor }">{{titleName}}</h2>
-        <p>Tag: {{adx.split(';').join('| ')}}</p>
-        <p>Description: {{descr}}</p>
+    <div class="container">
+        <h2 class="title" :style="{color: '#' + titleColor}">{{titleName}}</h2>
+        <p class="container-tag"><span v-if="adx" class="tag">Tag:</span> {{adx.split(';').join(' | ')}}</p>
+        <p class="container-tag"><span v-if="descr" class="tag">Description:</span> {{descr}}</p>
     </div>
 </article>
 </template>
@@ -30,18 +30,59 @@
             titleColor: {
                 type: String
             }
-        },
-        methods: {
-            log (e) {
-                console.log(e)
-            }
         }
     }
 </script>
 
 <style scoped>
+@media screen and (min-width: 799px) {
+    .title{
+    text-align: center;
+    font-weight: 900;
+}
 .item{
+    padding: 10px;
     display: flex;
    width: 100%;
 }
+.tag{
+    font-size: 20px;
+    font-weight: 700;
+}
+.container{
+    padding: 20px;
+    text-align: start;
+}
+.container-tag{
+    display: inline-block;
+    margin: 20px 0 0;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 798px) {
+.img{
+    max-width: 300px;
+}
+.item{
+    padding: 10px;
+}
+}
+.container{
+    padding: 20px;
+}
+.title{
+    text-align: center;
+    font-weight: 800;
+}
+.container-tag{
+    display: inline-block;
+    margin: 20px 0 0;
+    padding: 0;
+}
+.tag{
+    font-size: 18px;
+    font-weight: 700;
+}
+
 </style>

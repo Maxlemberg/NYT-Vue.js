@@ -1,13 +1,13 @@
 <template>
 <Container>
     <div>
-<Item class="list" v-for="{id, title, adx_keywords, abstract, media, titleColor} in items" :key="id" 
+<Item class="list" v-for="{id, title, adx_keywords, abstract, media, titleColor} in this.$store.state.newsPaper" 
+:key="id" 
 :titleName="title"
 :titleColor="titleColor"
 :adx='adx_keywords' 
 :descr="abstract" 
 :imgSrc='media'
-
 />
     </div>
     </Container>

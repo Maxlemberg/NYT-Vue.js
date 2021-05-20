@@ -1,15 +1,14 @@
 <template>
   <div id="app">
 <Header />
-   <List :items="file" />
-   <Button>Load more</Button>
+   <List />
+   <!-- <Button>Load more</Button> -->
   </div>
   
 </template>
 
 <script>
 import List from './components/list/List'
-import Button from './components/Button.vue'
 import Header from './components/Header'
 import {getPopularNews} from './services/newsPaper.service'
 
@@ -18,40 +17,29 @@ export default {
   name: 'App',
   components: {
   List,
-  Button,
   Header
   },
  
-   data() {
-     return {
-       file: [],
-      //  img: []
-}
-   },
+//    data() {
+//      return {
+//        file: [],
+// }
+//    },
     async created () {
         try {
           const response = await getPopularNews();
-          console.log(response);
+          // console.log(response);
           const data = [];
            response.forEach(el => el.media.forEach(m => m["media-metadata"].forEach((item, idx) =>{
-             if(idx===2) {
-                data.push({media:item.url, id:el.id, adx_keywords: el.adx_keywords, abstract: el.abstract,  title: el.title, titleColor: Math.floor(Math.random()*16777215).toString(16)})
-             }}))) ;
-          this.file = data;
-          console.log(this.file);
-           
-           ///id, title, adx_keywords, abstract, media
-         
-        
+             if(idx===2) { data.push({media:item.url, id:el.id, adx_keywords: el.adx_keywords, abstract: el.abstract,  title: el.title, titleColor: Math.floor(Math.random()*16777215).toString(16)})
+             }}))
+           );
+            
+             this.$store.commit('setNews', data);
+          // console.log(this.file);
         } catch (error) {
             console.log(error);
-        } finally {
-         
-          // console.log(this.file[0].media[0]["media-metadata"][2].url);
-        }
-    
-
-
+        } 
    },
    
 }
